@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprehensive Revision | Nuclear Physics (Section 1)</title>
+    <title>Comprehensive Revision | Nuclear Physics & Radiation (Sec 2)</title>
     <style>
         :root {
-            --primary: #1e3a8a;
-            --primary-light: #3b82f6;
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
             --accent: #f59e0b;
             --bg: #f8fafc;
             --card-bg: #ffffff;
             --text: #1f2937;
-            --text-muted: #4b5563;
             --correct-bg: #dcfce7;
             --correct-border: #22c55e;
             --correct-text: #15803d;
@@ -43,7 +42,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
             color: white;
             padding: 30px;
             border-radius: 16px;
@@ -59,7 +58,7 @@
 
         header p {
             font-size: 1.05rem;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         .badges {
@@ -118,7 +117,7 @@
         }
 
         .q-number {
-            background: #e0e7ff;
+            background: #ccfbf1;
             color: var(--primary);
             font-weight: 700;
             width: 32px;
@@ -235,7 +234,7 @@
         }
 
         .btn-reset:hover {
-            background: #1e40af;
+            background: #115e59;
         }
     </style>
 </head>
@@ -243,13 +242,13 @@
 
 <div class="container">
     <header>
-        <h1>Nuclear Physics — Section 1 Final Revision</h1>
+        <h1>Fundamentals of Radiation — Section 2 Revision</h1>
         <p>Faculty of Applied Health Sciences Technology — Beni Suef University</p>
         <div class="badges">
-            <span class="badge">Basic Concepts</span>
-            <span class="badge">Fundamental Forces</span>
-            <span class="badge">Radiation Interactions</span>
-            <span class="badge">Medical Applications</span>
+            <span class="badge">Wave vs Particle Nature</span>
+            <span class="badge">EM Waves & Properties</span>
+            <span class="badge">Ionizing vs Non-Ionizing</span>
+            <span class="badge">Medical Imaging Spectrum</span>
         </div>
     </header>
 
@@ -266,9 +265,9 @@ const funnyCorrect = [
     "أشطر نيورة والله! 🔥",
     "حبيبة بابا.. إيه الحلاوة والتركيز ده! 🌸",
     "رفعتي راسنا في بني سويف كلها! 🎓",
-    "الله أكبر عليكي.. ماشية واثقة في المادة! 🚀",
+    "الله أكبر عليكي.. الامتياز في جيبك خلاص! 🚀",
     "عاش يا دكتورة المستقبل! استمري 🌟",
-    "إيه الشطارة دي؟ الامتياز بينادي خلاص! 🩺",
+    "إيه الشطارة دي؟ ولا سؤال واقف قدامك! 🩺",
     "برافو يا بشمهندسة، إجابة ولا غلطة! 💯"
 ];
 
@@ -283,105 +282,100 @@ const funnyIncorrect = [
 
 const questions = [
     {
-        q: "Which branch of physics is focused on the study of atomic nuclei, including protons, neutrons, and their interactions?",
-        options: ["Atomic Physics", "Nuclear Physics", "Quantum Optics", "Solid State Physics"],
-        answer: 1,
-        reason: "Nuclear Physics بالتعريف هي الفرع الذي يركز على دراسة أنوية الذرات ومكوناتها (البروتونات والنيوترونات) والتفاعلات التي تحدث بينها."
-    },
-    {
-        q: "The term 'Nucleons' collectively refers to which particles in an atom?",
-        options: ["Protons and electrons", "Neutrons and electrons", "Protons and neutrons", "Electrons, protons, and neutrons"],
-        answer: 2,
-        reason: "الـ Nucleons هم جسيمات النواة مجتمعة (البروتونات + النيوترونات)."
-    },
-    {
-        q: "What is the primary role of neutrons inside the nucleus?",
-        options: ["Determines the element identity", "Orbits the nucleus to balance positive charge", "Provides nuclear stability by offsetting electrostatic repulsion between protons", "Undergoes nuclear fusion alone"],
-        answer: 2,
-        reason: "النيوترونات جسيمات متعادلة الشحنة دورها الأساسي توفير استقرار النواة (nuclear stability) ومعادلة قوى التنافر الكهربي الساكنة بين البروتونات موجبة الشحنة."
-    },
-    {
-        q: "The identity and atomic number of a chemical element is strictly determined by the number of:",
-        options: ["Neutrons", "Protons", "Electrons", "Nucleons"],
-        answer: 1,
-        reason: "عدد البروتونات (Protons) هو المعرّف الرئيسي للهوية الكيميائية للعنصر (e.g. الهيدروجين لديه بروتون واحد، والكربون لديه 6 بروتونات)."
-    },
-    {
-        q: "Where are electrons located relative to the atomic nucleus?",
-        options: ["Inside the core of the nucleus", "Evenly mixed with neutrons inside the nucleus", "Moving in energy levels (orbitals) around the nucleus", "Only within the strong nuclear force field"],
-        answer: 2,
-        reason: "الإلكترونات ليست جزءاً من النواة إطلاقاً، بل تدور في مستويات طاقة (orbitals) حول النواة."
-    },
-    {
-        q: "Which of the following correctly describes 'Excitation'?",
-        options: [
-            "Radiation completely knocks off an electron from the atom",
-            "Radiation gives enough energy to promote an electron to a higher energy level without removing it",
-            "A neutron transforms spontaneously into a proton",
-            "The nucleus splits into two equal fragments"
-        ],
-        answer: 1,
-        reason: "الـ Excitation (الإثارة) تعني إعطاء طاقة تكفي فقط لنقل الإلكترون لمستوى طاقة أعلى دون طرده أو فصله نهائياً عن الذرة."
-    },
-    {
-        q: "When X-rays hit a phosphor screen, atoms get excited and emit visible light when electrons return to ground state. This principle explains the operation of:",
-        options: ["Linear accelerators", "Image intensifiers and scintillators", "Nuclear batteries", "Radioactive dating"],
-        answer: 1,
-        reason: "هذا التطبيق العملي للإثارة هو الأساس الفيزيائي لعمل شاشات ومكبرات الصور (image intensifiers) وأجهزة الوميض (scintillators)."
-    },
-    {
-        q: "Ionisation occurs when radiation imparts sufficient energy to completely remove one or more electrons, resulting in:",
-        options: ["A neutral molecule and a proton", "A positive ion and a free electron", "A negative ion and a bound neutron", "A gamma photon and an alpha particle"],
-        answer: 1,
-        reason: "ينتج عن التأين خروج الإلكترون تاركاً الذرة كأيون موجب (Positive ion) مع إلكترون حر منطلق (Free electron)."
-    },
-    {
-        q: "In medical imaging and radiobiology, the ionization of atoms in living cells by X-rays is the direct basis for:",
-        options: ["Both image formation and radiation damage", "Nuclear decay exclusively", "Elimination of electromagnetic repulsion", "Beta particle transformation"],
+        q: "Radiation is scientifically defined as the emission or transfer of energy through space or a material medium in the form of:",
+        options: ["Waves or particles", "Only heat and sound", "Electric currents solely", "Visible illumination exclusively"],
         answer: 0,
-        reason: "تأين ذرات الخلايا بفعل الأشعة السينية هو الأساس العلمي لتكوين الصورة الشعاعية (image formation) وأيضاً للضرر البيولوجي والإشعاعي (radiation damage)."
+        reason: "الإشعاع (Radiation) هو انبعاث أو انتقال الطاقة عبر الفراغ أو وسط مادي على شكل موجات (waves) أو جسيمات (particles)."
     },
     {
-        q: "Which fundamental nuclear force is responsible for binding protons and neutrons together despite electrostatic repulsion?",
-        options: ["Electromagnetic Force", "Weak Nuclear Force", "Strong Nuclear Force", "Gravitational Force"],
+        q: "Radiation exhibits a dual nature, meaning it can behave as:",
+        options: ["Solids and liquids", "Waves and particles", "Atoms and molecules", "Electric currents and static charges"],
+        answer: 1,
+        reason: "للإشعاع طبيعة مزدوجة (Dual nature) حيث يمكن أن يتصرف كموجات كهرومغناطيسية أو كجسيمات."
+    },
+    {
+        q: "Which characteristic is TRUE regarding electromagnetic waves traveling through space?",
+        options: ["They require a dense physical medium to travel", "They carry energy without needing any material medium", "They have neither wavelength nor frequency", "They consist entirely of stationary electrons"],
+        answer: 1,
+        reason: "الموجات الكهرومغناطيسية تنتقل في الفراغ وتنقل الطاقة دون الحاجة إلى وسط مادي ملموس (without needing any medium)."
+    },
+    {
+        q: "In an electromagnetic wave, the electric and magnetic field components:",
+        options: ["Oscillate in the exact same plane", "Vibrate in two mutually perpendicular planes", "Move in opposite directions of propagation", "Have completely different speeds and wavelengths"],
+        answer: 1,
+        reason: "المجال الكهربي والمجال المغناطيسي يهتزان في مستويين متعامدين على بعضهما البعض (mutually perpendicular planes) ولهما نفس السرعة والتردد والطول الموجي والاتجاه."
+    },
+    {
+        q: "Which of the following is an example of Particulate Radiation?",
+        options: ["Microwaves", "Infrared radiation", "Alpha particles", "Ultraviolet rays"],
         answer: 2,
-        reason: "القوة النووية القوية (Strong Nuclear Force) هي القوة المسؤولة عن ربط النيوكليونات معاً داخل النواة، وتعمل في مدى قصير جداً."
+        reason: "جسيمات ألفا (Alpha particles) عبارة عن إشعاع جسيمي (Particulate Radiation) يتكون من جسيمات مادية تنبعث من الأنوية غير المستقرة، بينما البقية موجات كهرومغناطيسية."
     },
     {
-        q: "The force that causes repulsion between positively charged protons in the nucleus is the:",
-        options: ["Weak Nuclear Force", "Electromagnetic Force", "Gravitational Force", "Centrifugal Force"],
+        q: "An Alpha (α) particle is heavy, positively charged, and consists of:",
+        options: ["1 proton and 1 neutron", "2 protons and 2 neutrons", "2 electrons and 2 protons", "A high-speed positron"],
         answer: 1,
-        reason: "القوة الكهرومغناطيسية (Electromagnetic Force) هي التي تسبب التنافر الكولومي الكهرومغناطيسي بين شحنات البروتونات الموجبة المتماثلة."
+        reason: "جسيم ألفا يتكون من 2 بروتون و 2 نيوترون (2p + 2n) وهو ثقيل وموجب الشحنة، ويشبه نواة الهيليوم."
     },
     {
-        q: "Beta decay, in which a neutron can transform into a proton (or vice versa), is mediated by the:",
-        options: ["Strong Nuclear Force", "Electromagnetic Force", "Weak Nuclear Force", "Gravitational Force"],
+        q: "Beta (β) particles consist of fast-moving:",
+        options: ["Electrons (β-) or positrons (β+)", "Protons and neutrons", "Photons of pure energy", "Helium nuclei"],
+        answer: 0,
+        reason: "جسيمات بيتا إما أن تكون إلكترونات سالبة (β-) أو بوزيترونات موجبة (β+)."
+    },
+    {
+        q: "Which of the following particles is completely neutral (carries no charge)?",
+        options: ["Proton", "Positron", "Alpha particle", "Neutron"],
+        answer: 3,
+        reason: "النيوترونات (Neutrons) هي جسيمات جسيمية متعادلة الشحنة (neutral particles)."
+    },
+    {
+        q: "According to the materials shown in penetration diagrams, which type of radiation can be stopped by a simple sheet of paper?",
+        options: ["Gamma rays", "Beta particles", "Alpha particles", "Neutrons"],
         answer: 2,
-        reason: "القوة النووية الضعيفة (Weak Nuclear Force) هي المسؤولة عن اضمحلال بيتا وتحول النيوترون لبروتون أو العكس."
+        reason: "جسيمات ألفا ذات اختراق ضعيف لثقلها، لذا يمكن إيقافها بورقة بسيطة (paper)، بينما بيتا تحتاج بلاستيك/ألومنيوم، وجاما تحتاج رصاص."
     },
     {
-        q: "The balance between which two forces primarily determines the stability of the atomic nucleus?",
-        options: ["Weak nuclear force and gravity", "Strong nuclear force and electromagnetic force", "Strong nuclear force and weak nuclear force", "Electromagnetic force and thermal force"],
+        q: "Ionizing radiation is characterized by having enough energy to:",
+        options: ["Heat up tissue without disturbing atoms", "Remove electrons completely from atoms", "Reflect off cellular surfaces", "Slow down the speed of light"],
         answer: 1,
-        reason: "استقرار النواة يتحدد بالموازنة بين القوة النووية القوية (قوة تجاذب) والقوة الكهرومغناطيسية (قوة تنافر بين البروتونات)."
+        reason: "الإشعاع المؤين (Ionizing Radiation) يمتلك طاقة عالية تكفي لانتزاع الإلكترونات تماماً من الذرات (remove electrons from atoms)."
     },
     {
-        q: "Radioisotopes are utilized for diagnosing and treating diseases. SPECT and PET imaging techniques belong to which field?",
-        options: ["Radiation Oncology therapy only", "Nuclear Medicine", "Particle Acceleration research", "Radiometric Dating"],
-        answer: 1,
-        reason: "تقنيات SPECT و PET تعتمد على النظائر المشعة في التشخيص، وتتبع قسم الطب النووي (Nuclear Medicine)."
+        q: "Which of the following is classified as Non-Ionizing Radiation?",
+        options: ["X-rays", "Gamma rays", "Alpha particles", "Radio waves"],
+        answer: 3,
+        reason: "موجات الراديو (Radio waves) والميكروويف والضوء المرئي تعتبر غير مؤينة (Non-ionizing) لأن طاقتها منخفضة ولا تنزع إلكترونات."
     },
     {
-        q: "Which radioactive isotope is explicitly used in therapeutic nuclear medicine applications for thyroid disorders/cancer treatment?",
-        options: ["Carbon-14", "Technetium-99m", "Iodine-131", "Cobalt-60"],
+        q: "Across the Electromagnetic Spectrum, when the frequency of a wave increases:",
+        options: ["Its energy increases and its wavelength decreases", "Its energy decreases and its wavelength increases", "Both energy and wavelength increase", "Both frequency and energy remain unchanged"],
+        answer: 0,
+        reason: "العلاقة طردية بين التردد والطاقة وعكسية مع الطول الموجي: زيادة التردد تعني زيادة الطاقة ونقصان الطول الموجي (Higher frequency → Higher energy, Shorter wavelength)."
+    },
+    {
+        q: "Which region of the electromagnetic spectrum possesses the longest wavelength and lowest energy?",
+        options: ["Gamma rays", "X-rays", "Ultraviolet", "Radio waves"],
+        answer: 3,
+        reason: "موجات الراديو تقع في الطرف صاحب أطول طول موجي وأقل تردد وأقل طاقة (longer wavelength, lower frequency, lower energy)."
+    },
+    {
+        q: "Which type of electromagnetic wave is high-energy, penetrates tissues, and is widely used in radiography and CT scans?",
+        options: ["Infrared", "Radio waves", "X-Rays", "Microwaves"],
         answer: 2,
-        reason: "نظير اليود المشع (Iodine-131) مذكور كأهم تطبيق علاجي في الطب النووي (therapeutic applications using radioisotopes)."
+        reason: "الأشعة السينية (X-Rays) عالية الطاقة وتخترق الأنسجة، وتستخدم مباشرة في التصوير الشعاعي التشخيصي والأشعة المقطعية (CT)."
     },
     {
-        q: "Radiation therapy relies heavily on nuclear physics concepts like radioactive decay and half-life to:",
-        options: ["Accelerate electrons in orbitals", "Destroy cancer cells using ionizing radiation", "Induce excitation without ionization in bone tissue", "Generate electricity for pacemakers"],
-        answer: 1,
-        reason: "الأساس الفيزيائي للعلاج الإشعاعي (Radiation Therapy) هو استخدام الإشعاع المؤين لتدمير وتفتيت خلايا الأورام السرطانية."
+        q: "Gamma rays (γ) originate from nuclear decay and are primarily utilized in which medical fields?",
+        options: ["MRI scans only", "Ultrasound and laser therapy", "Nuclear medicine and radiotherapy", "Infrared thermography"],
+        answer: 2,
+        reason: "أشعة جاما تنتج من التحلل والاضمحلال النووي وتستخدم بشكل مكثف في الطب النووي (Nuclear medicine) والعلاج الإشعاعي (Radiotherapy)."
+    },
+    {
+        q: "Which electromagnetic waves are safely utilized in Magnetic Resonance Imaging (MRI)?",
+        options: ["X-rays", "Gamma rays", "Radio waves", "Ultraviolet rays"],
+        answer: 2,
+        reason: "جهاز الرنين المغناطيسي (MRI) يعتمد على موجات الراديو (Radio waves) وهي موجات غير مؤينة آمنة مقترنة بمجال مغناطيسي قوي."
     }
 ];
 
