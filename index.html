@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Revision | Nuclear Physics (Section 1)</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --text-muted: #4b5563;
+            --correct-bg: #dcfce7;
+            --correct-border: #22c55e;
+            --correct-text: #15803d;
+            --incorrect-bg: #fee2e2;
+            --incorrect-border: #ef4444;
+            --incorrect-text: #b91c1c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 860px;
+            width: 100%;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        .badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.18);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .score-box {
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+            background: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .score-text {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+
+        .q-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .q-number {
+            background: #e0e7ff;
+            color: var(--primary);
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+            font-size: 0.95rem;
+        }
+
+        .q-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .option-btn {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+            color: #334155;
+            display: block;
+            width: 100%;
+        }
+
+        .option-btn:hover:not([disabled]) {
+            background: #f1f5f9;
+            border-color: var(--primary-light);
+            transform: translateX(4px);
+        }
+
+        .option-btn.correct-choice {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--correct-border) !important;
+            color: var(--correct-text) !important;
+            font-weight: 600;
+        }
+
+        .option-btn.incorrect-choice {
+            background-color: var(--incorrect-bg) !important;
+            border-color: var(--incorrect-border) !important;
+            color: var(--incorrect-text) !important;
+        }
+
+        .feedback-container {
+            margin-top: 15px;
+            padding: 15px 18px;
+            border-radius: 10px;
+            display: none;
+            direction: rtl;
+            text-align: right;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-title {
+            font-weight: 800;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+
+        .feedback-explanation {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #334155;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+
+        .status-correct {
+            background: #f0fdf4;
+            border: 1px solid var(--correct-border);
+            color: var(--correct-text);
+        }
+
+        .status-incorrect {
+            background: #fff1f2;
+            border: 1px solid var(--incorrect-border);
+            color: var(--incorrect-text);
+        }
+
+        .btn-reset {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-reset:hover {
+            background: #1e40af;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Nuclear Physics — Section 1 Final Revision</h1>
+        <p>Faculty of Applied Health Sciences Technology — Beni Suef University</p>
+        <div class="badges">
+            <span class="badge">Basic Concepts</span>
+            <span class="badge">Fundamental Forces</span>
+            <span class="badge">Radiation Interactions</span>
+            <span class="badge">Medical Applications</span>
+        </div>
+    </header>
+
+    <div class="score-box">
+        <div class="score-text">النتيجة: <span id="score">0</span> / <span id="total-q">16</span></div>
+        <button class="btn-reset" onclick="resetQuiz()">إعادة الاختبار 🔄</button>
+    </div>
+
+    <div id="quiz-container"></div>
+</div>
+
+<script>
+const funnyCorrect = [
+    "أشطر نيورة والله! 🔥",
+    "حبيبة بابا.. إيه الحلاوة والتركيز ده! 🌸",
+    "رفعتي راسنا في بني سويف كلها! 🎓",
+    "الله أكبر عليكي.. ماشية واثقة في المادة! 🚀",
+    "عاش يا دكتورة المستقبل! استمري 🌟",
+    "إيه الشطارة دي؟ الامتياز بينادي خلاص! 🩺",
+    "برافو يا بشمهندسة، إجابة ولا غلطة! 💯"
+];
+
+const funnyIncorrect = [
+    "يا دي النيلة! ركزي شوية يا بنتي 🤦‍♂️",
+    "يا شماتة ماما فينا.. ليه الاستعجال ده؟ 💔",
+    "الله يهديكي يا بنتي.. اقري السؤال بالراحة! 😅",
+    "لأ نركز شوية.. درجات الفاينال مش لعبة! ⚠️",
+    "إيه اللخبطة دي؟ راجعي السلايد كويس تاني 🧐",
+    "راحت فين المذاكرة؟ صحصحي معانا كده! ☕"
+];
+
+const questions = [
+    {
+        q: "Which branch of physics is focused on the study of atomic nuclei, including protons, neutrons, and their interactions?",
+        options: ["Atomic Physics", "Nuclear Physics", "Quantum Optics", "Solid State Physics"],
+        answer: 1,
+        reason: "Nuclear Physics بالتعريف هي الفرع الذي يركز على دراسة أنوية الذرات ومكوناتها (البروتونات والنيوترونات) والتفاعلات التي تحدث بينها."
+    },
+    {
+        q: "The term 'Nucleons' collectively refers to which particles in an atom?",
+        options: ["Protons and electrons", "Neutrons and electrons", "Protons and neutrons", "Electrons, protons, and neutrons"],
+        answer: 2,
+        reason: "الـ Nucleons هم جسيمات النواة مجتمعة (البروتونات + النيوترونات)."
+    },
+    {
+        q: "What is the primary role of neutrons inside the nucleus?",
+        options: ["Determines the element identity", "Orbits the nucleus to balance positive charge", "Provides nuclear stability by offsetting electrostatic repulsion between protons", "Undergoes nuclear fusion alone"],
+        answer: 2,
+        reason: "النيوترونات جسيمات متعادلة الشحنة دورها الأساسي توفير استقرار النواة (nuclear stability) ومعادلة قوى التنافر الكهربي الساكنة بين البروتونات موجبة الشحنة."
+    },
+    {
+        q: "The identity and atomic number of a chemical element is strictly determined by the number of:",
+        options: ["Neutrons", "Protons", "Electrons", "Nucleons"],
+        answer: 1,
+        reason: "عدد البروتونات (Protons) هو المعرّف الرئيسي للهوية الكيميائية للعنصر (e.g. الهيدروجين لديه بروتون واحد، والكربون لديه 6 بروتونات)."
+    },
+    {
+        q: "Where are electrons located relative to the atomic nucleus?",
+        options: ["Inside the core of the nucleus", "Evenly mixed with neutrons inside the nucleus", "Moving in energy levels (orbitals) around the nucleus", "Only within the strong nuclear force field"],
+        answer: 2,
+        reason: "الإلكترونات ليست جزءاً من النواة إطلاقاً، بل تدور في مستويات طاقة (orbitals) حول النواة."
+    },
+    {
+        q: "Which of the following correctly describes 'Excitation'?",
+        options: [
+            "Radiation completely knocks off an electron from the atom",
+            "Radiation gives enough energy to promote an electron to a higher energy level without removing it",
+            "A neutron transforms spontaneously into a proton",
+            "The nucleus splits into two equal fragments"
+        ],
+        answer: 1,
+        reason: "الـ Excitation (الإثارة) تعني إعطاء طاقة تكفي فقط لنقل الإلكترون لمستوى طاقة أعلى دون طرده أو فصله نهائياً عن الذرة."
+    },
+    {
+        q: "When X-rays hit a phosphor screen, atoms get excited and emit visible light when electrons return to ground state. This principle explains the operation of:",
+        options: ["Linear accelerators", "Image intensifiers and scintillators", "Nuclear batteries", "Radioactive dating"],
+        answer: 1,
+        reason: "هذا التطبيق العملي للإثارة هو الأساس الفيزيائي لعمل شاشات ومكبرات الصور (image intensifiers) وأجهزة الوميض (scintillators)."
+    },
+    {
+        q: "Ionisation occurs when radiation imparts sufficient energy to completely remove one or more electrons, resulting in:",
+        options: ["A neutral molecule and a proton", "A positive ion and a free electron", "A negative ion and a bound neutron", "A gamma photon and an alpha particle"],
+        answer: 1,
+        reason: "ينتج عن التأين خروج الإلكترون تاركاً الذرة كأيون موجب (Positive ion) مع إلكترون حر منطلق (Free electron)."
+    },
+    {
+        q: "In medical imaging and radiobiology, the ionization of atoms in living cells by X-rays is the direct basis for:",
+        options: ["Both image formation and radiation damage", "Nuclear decay exclusively", "Elimination of electromagnetic repulsion", "Beta particle transformation"],
+        answer: 0,
+        reason: "تأين ذرات الخلايا بفعل الأشعة السينية هو الأساس العلمي لتكوين الصورة الشعاعية (image formation) وأيضاً للضرر البيولوجي والإشعاعي (radiation damage)."
+    },
+    {
+        q: "Which fundamental nuclear force is responsible for binding protons and neutrons together despite electrostatic repulsion?",
+        options: ["Electromagnetic Force", "Weak Nuclear Force", "Strong Nuclear Force", "Gravitational Force"],
+        answer: 2,
+        reason: "القوة النووية القوية (Strong Nuclear Force) هي القوة المسؤولة عن ربط النيوكليونات معاً داخل النواة، وتعمل في مدى قصير جداً."
+    },
+    {
+        q: "The force that causes repulsion between positively charged protons in the nucleus is the:",
+        options: ["Weak Nuclear Force", "Electromagnetic Force", "Gravitational Force", "Centrifugal Force"],
+        answer: 1,
+        reason: "القوة الكهرومغناطيسية (Electromagnetic Force) هي التي تسبب التنافر الكولومي الكهرومغناطيسي بين شحنات البروتونات الموجبة المتماثلة."
+    },
+    {
+        q: "Beta decay, in which a neutron can transform into a proton (or vice versa), is mediated by the:",
+        options: ["Strong Nuclear Force", "Electromagnetic Force", "Weak Nuclear Force", "Gravitational Force"],
+        answer: 2,
+        reason: "القوة النووية الضعيفة (Weak Nuclear Force) هي المسؤولة عن اضمحلال بيتا وتحول النيوترون لبروتون أو العكس."
+    },
+    {
+        q: "The balance between which two forces primarily determines the stability of the atomic nucleus?",
+        options: ["Weak nuclear force and gravity", "Strong nuclear force and electromagnetic force", "Strong nuclear force and weak nuclear force", "Electromagnetic force and thermal force"],
+        answer: 1,
+        reason: "استقرار النواة يتحدد بالموازنة بين القوة النووية القوية (قوة تجاذب) والقوة الكهرومغناطيسية (قوة تنافر بين البروتونات)."
+    },
+    {
+        q: "Radioisotopes are utilized for diagnosing and treating diseases. SPECT and PET imaging techniques belong to which field?",
+        options: ["Radiation Oncology therapy only", "Nuclear Medicine", "Particle Acceleration research", "Radiometric Dating"],
+        answer: 1,
+        reason: "تقنيات SPECT و PET تعتمد على النظائر المشعة في التشخيص، وتتبع قسم الطب النووي (Nuclear Medicine)."
+    },
+    {
+        q: "Which radioactive isotope is explicitly used in therapeutic nuclear medicine applications for thyroid disorders/cancer treatment?",
+        options: ["Carbon-14", "Technetium-99m", "Iodine-131", "Cobalt-60"],
+        answer: 2,
+        reason: "نظير اليود المشع (Iodine-131) مذكور كأهم تطبيق علاجي في الطب النووي (therapeutic applications using radioisotopes)."
+    },
+    {
+        q: "Radiation therapy relies heavily on nuclear physics concepts like radioactive decay and half-life to:",
+        options: ["Accelerate electrons in orbitals", "Destroy cancer cells using ionizing radiation", "Induce excitation without ionization in bone tissue", "Generate electricity for pacemakers"],
+        answer: 1,
+        reason: "الأساس الفيزيائي للعلاج الإشعاعي (Radiation Therapy) هو استخدام الإشعاع المؤين لتدمير وتفتيت خلايا الأورام السرطانية."
+    }
+];
+
+let score = 0;
+let answered = new Set();
+
+function getRandomItem(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function renderQuiz() {
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = "";
+    document.getElementById("total-q").innerText = questions.length;
+
+    questions.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+        card.id = `card-${index}`;
+
+        const qHeader = document.createElement("div");
+        qHeader.className = "q-header";
+        qHeader.innerHTML = `
+            <div class="q-number">${index + 1}</div>
+            <div class="q-text">${item.q}</div>
+        `;
+        card.appendChild(qHeader);
+
+        const optsDiv = document.createElement("div");
+        optsDiv.className = "options-list";
+
+        item.options.forEach((opt, optIndex) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.innerText = opt;
+            btn.onclick = () => selectOption(index, optIndex);
+            optsDiv.appendChild(btn);
+        });
+        card.appendChild(optsDiv);
+
+        const feedbackDiv = document.createElement("div");
+        feedbackDiv.className = "feedback-container";
+        feedbackDiv.id = `feedback-${index}`;
+        card.appendChild(feedbackDiv);
+
+        container.appendChild(card);
+    });
+}
+
+function selectOption(qIdx, optIdx) {
+    if (answered.has(qIdx)) return;
+    answered.add(qIdx);
+
+    const question = questions[qIdx];
+    const card = document.getElementById(`card-${qIdx}`);
+    const buttons = card.querySelectorAll(".option-btn");
+    const feedback = document.getElementById(`feedback-${qIdx}`);
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    const isCorrect = (optIdx === question.answer);
+
+    if (isCorrect) {
+        score++;
+        document.getElementById("score").innerText = score;
+        buttons[optIdx].classList.add("correct-choice");
+        feedback.className = "feedback-container status-correct";
+        feedback.innerHTML = `
+            <div class="feedback-title">✓ ${getRandomItem(funnyCorrect)}</div>
+            <div class="feedback-explanation"><strong>التفسير العلمي:</strong> ${question.reason}</div>
+        `;
+    } else {
+        buttons[optIdx].classList.add("incorrect-choice");
+        buttons[question.answer].classList.add("correct-choice");
+        feedback.className = "feedback-container status-incorrect";
+        feedback.innerHTML = `
+            <div class="feedback-title">✗ ${getRandomItem(funnyIncorrect)}</div>
+            <div class="feedback-explanation">
+                <strong>الإجابة الصحيحة هي:</strong> ${question.options[question.answer]}<br>
+                <strong>السبب:</strong> ${question.reason}
+            </div>
+        `;
+    }
+
+    feedback.style.display = "block";
+}
+
+function resetQuiz() {
+    score = 0;
+    answered.clear();
+    document.getElementById("score").innerText = "0";
+    renderQuiz();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.onload = renderQuiz;
+</script>
+</body>
+</html>
